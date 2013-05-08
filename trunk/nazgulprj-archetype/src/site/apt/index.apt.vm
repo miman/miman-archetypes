@@ -1,0 +1,21 @@
+
+Nazgul archetype
+
+%{toc}
+
+* Purpose
+
+ This project creates an archetype used to create a minimal Nazgul core project.
+
+** Content of generated project
+
+ This generated project contains:
+ 
+ * A root reactor pom
+ 
+ * A parent pom to be used for all normal sub projects 
+ 
+ * A parent pom to be used for all model & API sub projects
+ 
+ * An example site that should be populated
+ 

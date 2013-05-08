@@ -1,0 +1,23 @@
+   			------
+            ${prjDescription} - Integrations
+            ------
+            MiMan
+            ------
+            2012-11-04
+
+${prjDescription} - Integrations
+
+%{toc}
+
+* Overview
+
+ This page describes the API exposed by any systems , that is used by this component.
+
+
+* System contacts for the used system
+
+ Describe how the contacts for the system we are using can be accessed
+
+*	"Used system" Integrations
+
+ Describe the API we are using.

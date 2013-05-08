@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="MiMan JBoss Forge Plugins">
+  <bannerLeft>
+    <name>MiMan JBoss Forge Plugins</name>
+    <src>http://openclipart.org/people/Andy/Andy_Tools_Hammer_Spanner.svg</src>
+    <href>http://www.google.se</href>
+  </bannerLeft>
+  <bannerRight>
+    <src>http://forge.jboss.org/images/jbossforge_icon_256px.png</src>
+  </bannerRight>
+
+	<skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.3.0</version>
+    </skin>
+
+    <custom>
+        <fluidoSkin>
+            <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+        </fluidoSkin>
+    </custom>
+
+  <body>
+    <links>
+      <item name="JBoss Forge" href="http://forge.jboss.org/" />
+      <item name="Maven" href="http://maven.apache.org/"/>
+    </links>
+
+    <menu name="MiMan JBoss Forge Plugins">
+      <!-- item name="Introduction" href="index.html"/-->
+      <item name="Introduction" href="index.html"/>
+      <item name="Usage" href="usage.html"/>
+      <item name="Release" href="release.html"/>
+      <!-- item name="Release Notes" href="release-notes.html" /-->
+    </menu>
+
+    <menu ref="reports"/>
+  </body>
+</project>

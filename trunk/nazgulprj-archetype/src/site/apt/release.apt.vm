@@ -1,0 +1,23 @@
+
+This document describes how to release this archetype.
+
+%{toc}
+
+* Release archetype
+
+** First do a test (dry run)
+
+ mvn -DdryRun=true -DautoVersionSubmodules=true -DreleaseVersion=1.0.X -DdevelopmentVersion=1.0.Y-SNAPSHOT -Dtag=foundation-minimal-archetype-1.0.X release:prepare
+
+** Remove dry run results
+
+ mvn release:clean clean
+
+** Do real release
+
+ mvn -DautoVersionSubmodules=true -DreleaseVersion=1.0.X -DdevelopmentVersion=1.0.Y-SNAPSHOT -Dtag=foundation-minimal-archetype-1.0.X release:prepare
+
+** Perform the release
+
+ mvn release:perform
+ 

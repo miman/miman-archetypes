@@ -1,0 +1,22 @@
+This is a JBoss forge plugin.
+
+To deploy this so that it can be used in your forge-console, do the following:
+- Start a forge console
+- change to the directory of this project (root)
+- run the command 'forge source-plugin .' in the forge shell, this will install it on your computer so you can use it later on
+
+
+The easiest way to run the forge shell is to installing the JBoss Eclipse plugin, otherwise just run it in a cmd shell.
+JBoss forge is found here:
+http://forge.jboss.org/index.html
+
+Usage:
+-----
+The easiest way to test this Forge plugin is to run the following commands in a forge shell:
+1. new-project --named test --type pom
+2. nazgulprj setup
+
+These 2 commands will create a maven project based on the nazgul strategy.
+
+
+An example forge script can be found in the project root here named 'miman-prj-example.fsh', open it to find instructions.
