@@ -1,0 +1,17 @@
+   			------
+            The purpose of the ${prjDescription} 
+            ------
+            MiMan
+            ------
+            2012-11-05
+            
+${prjDescription}
+
+%{toc}
+
+* Purpose
+ 
+ The purpose of the Nazgul archetype is to create a minimal project using the common Nazgul parent poms.
+
+ UML model example 
+[/uml/example_flow.png]

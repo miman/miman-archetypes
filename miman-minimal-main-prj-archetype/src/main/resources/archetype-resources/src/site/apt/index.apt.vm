@@ -1,0 +1,20 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+   			------
+            The purpose of the camel rest test app 
+            ------
+            MiMan
+            ------
+            2012-11-05
+            
+camel rest test app
+
+%{toc}
+
+* Purpose
+ 
+ The purpose of the MiMan archetype is to create a minimal project using the common MiMan parent poms.
+
+ UML model example 
+[/uml/example_flow.png]

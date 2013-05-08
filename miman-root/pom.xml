@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>se.miman.maven</groupId>
+	<artifactId>miman-root</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>miman-root</name>
+	<description>A root pom for miman projects</description>
+
+	<properties>
+		<camel.version>2.10.2</camel.version>
+		<sl4j.version>1.6.6</sl4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<jaxb-api.version>2.2.7</jaxb-api.version>
+		<jaxb-impl.version>2.2.7-b41</jaxb-impl.version>
+		<hibernate.version>4.1.8.Final</hibernate.version>
+		<mysql.version>5.1.22</mysql.version>
+		<spring.version>3.1.3.RELEASE</spring.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<activemq.version>5.6.0</activemq.version>
+	</properties>
+
+	<dependencies>
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${sl4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${sl4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		
+			<!-- Run mvn com.github.jeluard:maven-plantuml-plugin:generate to generate plantuml images -->
+			<plugin>
+				<groupId>com.github.jeluard</groupId>
+				<artifactId>plantuml-maven-plugin</artifactId>
+				<version>7954</version>
+				<configuration>
+					<outputDirectory>${basedir}/target/site/uml</outputDirectory>
+					<sourceFiles>
+						<directory>${basedir}</directory>
+						<includes>
+							<include>src/site/uml/**/*.puml</include>
+						</includes>
+					</sourceFiles>
+				</configuration>
+				<executions>
+					<execution>
+						<id>plantuml</id>
+						<phase>pre-site</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+		</plugins>
+	</reporting>
+	
+</project>

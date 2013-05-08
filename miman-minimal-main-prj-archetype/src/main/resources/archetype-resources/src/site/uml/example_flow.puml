@@ -1,0 +1,23 @@
+@startuml example_flow.png
+
+start
+
+  
+	if (plantuml diagram not in code file ?) then (no)
+		:Create Plant UML diagram 
+	Sequence, Activity, class... diagram ;
+	endif
+
+	:Learn how to create diagrams @ <u>http://plantuml.sourceforge.net/index.html</u>;
+		
+	:Use images from site documents 
+	using [/uml/example_flow.png];
+
+	:Build mvn site;
+	
+	:Open site page at <u>target/site/index.html</u> & view result;
+  
+stop
+
+@enduml
+

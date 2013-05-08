@@ -1,0 +1,43 @@
+This document describes how this archetype is used.
+
+Generate project
+----------------
+run this maven command to create a project called 'test1'
+ 
+mvn archetype:generate -DarchetypeGroupId=se.miman.archetypes.camel -DarchetypeArtifactId=camel-rest-war-archetype -DarchetypeVersion=1.0.1  -DgroupId=se.miman.test -Dpackage=se.miman.test -DartifactId=test1 -Dversion=1.0.0-SNAPSHOT
+
+
+Release archetype
+-----------------
+Do the following steps to release this archetype into your maven repository
+
+First do a test (dry run)
+-------------------------
+mvn -DdryRun=true -DautoVersionSubmodules=true -DreleaseVersion=1.0.X -DdevelopmentVersion=1.0.Y-SNAPSHOT -D
+tag=foundation-minimal-archetype-1.0.X release:prepare
+
+Remove dry run results
+----------------------
+mvn release:clean clean
+
+Do real release
+---------------
+mvn -DautoVersionSubmodules=true -DreleaseVersion=1.0.X -DdevelopmentVersion=1.0.Y-SNAPSHOT -D
+tag=foundation-minimal-archetype-1.0.X release:prepare
+
+Perform the release
+-------------------
+mvn release:perform
+
+==============================================
+Using the archetype:
+--------------------
+You will need to supply 4 values when creating your project based on this archetype:
+
+- parentGroupId (ex:se.miman.maven)
+- parentArtifactId (ex: rootpom)
+- parentVersion (ex: 1.0.0)
+- prjDescription (ex: My test prj)
+- camelBasePackage (ex: se.miman.myprj.routes)
+
+ 

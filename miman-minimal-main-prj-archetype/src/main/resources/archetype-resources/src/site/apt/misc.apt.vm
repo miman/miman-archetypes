@@ -1,0 +1,34 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+   			------
+            camel rest test app - Misc info
+            ------
+            MiMan
+            ------
+            2012-11-04
+
+camel rest test app - Misc info
+
+%{toc}
+
+* References for documents relevant for this component
+
+*-------*---------------+-------------+
+| Ref	| Document Name	| Version |
+*-------*---------------+-------------+
+| 1	| {{{http://www.google.com} Link to document X}}	| 2.1 |
+*-------*---------------+-------------+
+
+* Requirement reference
+
+ There are no requirements specifically for the camel rest test app.
+
+* Reference to test docs & performance test runs
+
+ <We do not have any references to the test documents and results from performed tests yet.>
+
+* Component stakeholders
+
+ A list of component owners, technical responsible and external stakeholders for this component can be found {{{http://www.google.se} here}} (TODO: fix link )
+
