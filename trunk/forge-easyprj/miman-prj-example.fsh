@@ -20,6 +20,8 @@ camelweb setup --camelBasePackage se.comp.test;
 
 cd ..;
 new-project --named routes --type pom;
+miman-reactor-prj setup;
+
 new-project --named test-route --topLevelPackage se.comp.test.testroute;
 camelroute setup --warProjectArtifactId testprj-war;
 
