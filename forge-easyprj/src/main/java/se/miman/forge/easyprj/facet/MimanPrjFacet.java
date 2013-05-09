@@ -36,14 +36,12 @@ import se.miman.forge.easyprj.util.VelocityUtil;
 		DependencyFacet.class })
 public class MimanPrjFacet extends BaseFacet {
 
-	private static final String PARENT_ARTIFACT_ID = "miman-root";
-
-	private static final String PARENT_GROUP_ID = "se.miman.maven";
+	public static final String PARENT_ARTIFACT_ID = "miman-root";
+	public static final String PARENT_GROUP_ID = "se.miman.maven";
+	public static final String MIMAN_ROOT_VERSION = "1.0.0";
 
 	// private static final VelocityUtil VELOCITY_UTIL = new VelocityUtil();
 	private static final String UTF_8 = "UTF-8";
-
-	private static final String MIMAN_ROOT_VERSION = "1.0.0";
 
 	private final VelocityEngine velocityEngine;
 

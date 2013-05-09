@@ -8,29 +8,34 @@ import javax.inject.Inject;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.Parent;
 import org.jboss.forge.maven.MavenCoreFacet;
+import org.jboss.forge.project.Project;
 import org.jboss.forge.project.facets.BaseFacet;
 import org.jboss.forge.project.facets.DependencyFacet;
 import org.jboss.forge.project.facets.JavaSourceFacet;
 import org.jboss.forge.project.services.ProjectFactory;
+import org.jboss.forge.shell.ShellColor;
+import org.jboss.forge.shell.ShellPrintWriter;
 import org.jboss.forge.shell.plugins.Alias;
 import org.jboss.forge.shell.plugins.RequiresFacet;
 
-import se.miman.forge.easyprj.dto.MavenProjectId;
 import se.miman.forge.easyprj.util.NazgulPrjUtil;
 
 /**
- *	Makes sure the reactor project has the 'nazgul-tools-reactor' as a parent project and that the version is correct.  
+ *	Makes sure the reactor project has the 'miman-root' as a parent project and that the version is correct.  
  * @author Mikael Thorman
  */
-@Alias("nazgul-reactor-facet")
+@Alias("miman-reactor-facet")
 @RequiresFacet({ MavenCoreFacet.class, JavaSourceFacet.class,
 	DependencyFacet.class })
-public class NazgulReactorPrjFacet extends BaseFacet {
+public class MimanReactorPrjFacet extends BaseFacet {
 
 	@Inject
 	ProjectFactory prjFactory;
 
-	public NazgulReactorPrjFacet() {
+   @Inject
+   private ShellPrintWriter writer;
+
+	public MimanReactorPrjFacet() {
 		super();
 	}
 	
@@ -55,17 +60,17 @@ public class NazgulReactorPrjFacet extends BaseFacet {
 		if (pom.getParent() == null) {
 			return false;
 		}
-		if (!NazgulFacet.NAZGUL_REACTOR_GROUP_ID.equals(pom.getParent().getGroupId())) {
+		if (!MimanPrjFacet.PARENT_GROUP_ID.equals(pom.getParent().getGroupId())) {
 			return false;
 		}
-		if (!NazgulFacet.NAZGUL_REACTOR_ARTIFACT_ID.equals(pom.getParent().getArtifactId())) {
+		if (!MimanPrjFacet.PARENT_ARTIFACT_ID.equals(pom.getParent().getArtifactId())) {
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * Set the project parent to Nazgul project.
+	 * Set the project parent to MiMan project.
 	 * Changes the project to a pom project.
 	 */
 	private void installNazgulConfiguration() {
@@ -73,14 +78,23 @@ public class NazgulReactorPrjFacet extends BaseFacet {
 		Model pom = mvnFacet.getPOM();
 
 		// Change the parent to Nazgul project
-		MavenProjectId prjId = NazgulPrjUtil.getParentProjectId(project, prjFactory);
+		Project parentPrj = NazgulPrjUtil.findParentProject(project, prjFactory);
+		MavenCoreFacet maprentPrjMvnFacet = parentPrj.getFacet(MavenCoreFacet.class);
+		Model parentPom = maprentPrjMvnFacet.getPOM();
+		
+		if (parentPom.getParent() == null) {
+			// The parent pom doesn't have any parent pom in its turn
+			writer.println(ShellColor.RED, "Error - The parent pom.xml file doesn't have any parent!");
+			writer.println("The parent pom is located here: " + parentPrj.getProjectRoot().getFullyQualifiedName());
+			return;
+		}
 		
 		if (pom.getParent() == null) {
 			pom.setParent(new Parent());
 		}
-		pom.getParent().setGroupId(NazgulFacet.NAZGUL_REACTOR_GROUP_ID);
-		pom.getParent().setArtifactId(NazgulFacet.NAZGUL_REACTOR_ARTIFACT_ID);
-		pom.getParent().setVersion(prjId.getVersion());
+		pom.getParent().setGroupId(parentPom.getParent().getGroupId());
+		pom.getParent().setArtifactId(parentPom.getParent().getArtifactId());
+		pom.getParent().setVersion(parentPom.getParent().getVersion());
 		
 		pom.setPackaging("pom");
 		

@@ -6,15 +6,21 @@ package se.miman.forge.easyprj.facet;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.apache.maven.model.Model;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.jboss.forge.maven.MavenCoreFacet;
+import org.jboss.forge.project.Project;
 import org.jboss.forge.project.facets.BaseFacet;
 import org.jboss.forge.project.facets.DependencyFacet;
 import org.jboss.forge.project.facets.JavaSourceFacet;
+import org.jboss.forge.project.services.ProjectFactory;
+import org.jboss.forge.shell.ShellColor;
+import org.jboss.forge.shell.ShellPrintWriter;
 import org.jboss.forge.shell.plugins.Alias;
 import org.jboss.forge.shell.plugins.RequiresFacet;
 
@@ -30,6 +36,12 @@ import se.miman.forge.easyprj.util.VelocityUtil;
 @RequiresFacet({ MavenCoreFacet.class, JavaSourceFacet.class,
 	DependencyFacet.class })
 public class CamelWebPrjFacet extends BaseFacet {
+
+	@Inject
+	ProjectFactory prjFactory;
+
+   @Inject
+   private ShellPrintWriter writer;
 
 	/**
 	 * The velocity engine used to replace data in the supplied templates with the correct info.
@@ -94,13 +106,22 @@ public class CamelWebPrjFacet extends BaseFacet {
 		Model pom = mvnFacet.getPOM();
 
 		// Change the POM parent to parent project
-		MavenProjectId prjId = NazgulPrjUtil.getParentProjectId(pom, project);
+		MavenProjectId prjId = NazgulPrjUtil.getParentProjectId(project, prjFactory);
 		mergePomFileWithTemplate(prjId, pom, prjDescription);
 		// While we are replacing the pom, we do not manually modify & store it 
 		// here (it will then overwrite the one we are replacing it with)
 		
 		if (camelBasePackage == null) {
-			camelBasePackage = NazgulPrjUtil.getRootProjectGroupId(pom, project).trim().replace("-", "").replace("_", "");
+			Project rootPrj = NazgulPrjUtil.findRootProject(project, prjFactory);
+			if (rootPrj == null) {
+				// The root project cannot be found
+				writer.println(ShellColor.RED, "Error - Couldn't find any root project above this project !");
+				return;
+			}
+			final MavenCoreFacet rootPrjMvnFacet = rootPrj.getFacet(MavenCoreFacet.class);
+			Model rootPrjPom = rootPrjMvnFacet.getPOM();
+
+			camelBasePackage = rootPrjPom.getGroupId().trim().replace("-", "").replace("_", "");
 		}
 		createApplicationContext(camelBasePackage);
 		createWebXml();

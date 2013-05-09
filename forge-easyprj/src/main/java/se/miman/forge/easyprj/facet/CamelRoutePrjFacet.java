@@ -117,7 +117,7 @@ public class CamelRoutePrjFacet extends BaseFacet {
 		Model pom = mvnFacet.getPOM();
 
 		// Change the POM parent to parent project
-		MavenProjectId prjId = NazgulPrjUtil.getParentProjectId(pom, project);
+		MavenProjectId prjId = NazgulPrjUtil.getParentProjectId(project, prjFactory);
 		mergePomFileWithTemplate(prjId, pom, prjDescription);
 		// While we are replacing the pom, we do not manually modify & store it 
 		// here (it will then overwrite the one we are replacing it with)

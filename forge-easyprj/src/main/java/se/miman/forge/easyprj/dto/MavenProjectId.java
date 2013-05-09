@@ -23,5 +23,10 @@ public class MavenProjectId {
 	public void setVersion(String version) {
 		this.version = version;
 	}
+	@Override
+	public String toString() {
+		return "MavenProjectId [groupId=" + groupId + ", artifactId="
+				+ artifactId + ", version=" + version + "]";
+	}
 	
 }
