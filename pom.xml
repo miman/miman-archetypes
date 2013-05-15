@@ -29,7 +29,6 @@
 		<module>nazgulprj-archetype</module>
 		<module>miman-root</module>
 		<module>miman-minimal-main-prj-archetype</module>
-		<module>forge-easyprj</module>
     </modules>
 
 </project>
