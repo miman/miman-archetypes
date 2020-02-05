@@ -22,7 +22,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <camel.version>2.10.4</camel.version>
+    <camel.version>3.0.1</camel.version>
     <spring.version>3.2.2.RELEASE</spring.version>
   </properties>
 
